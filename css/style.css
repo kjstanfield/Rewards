@@ -1,8 +1,36 @@
+/* ==============================
+   Nav Colors
+   ============================== */
+
 .navbar-dark .navbar-nav .nav-link {
-    color: rgba(255,255,255,.7);
+    color: rgba(255, 255, 255, .7);
 }
+
+/* ==============================
+   Body
+   ============================== */
 
 body {
     background-image: url("../images/bg.png");
     background-repeat: repeat;
+}
+
+.card {
+    margin-top: 1.5rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.list-container {
+    width: 60%;
+}
+
+.bullet {
+    margin-right: 5px;
+}
+
+.coins {
+    margin-left: 5px;
 }
