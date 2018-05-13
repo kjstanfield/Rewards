@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS + FontAwesome-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="css/fontawesome.css">
     <!-- Customn CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -32,7 +31,8 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Admin
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-lock"></i>
                     </a>
                 </li>
             </ul>
@@ -44,12 +44,11 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="list-container">
+                <!-- Main List -->
+                <div class="card-container">
                     <ul>
 
 
-
-
                         <li>
                             <div class="container">
                                 <div class="row">
@@ -86,12 +85,47 @@
                                 </div>
                             </div>
                         </li>
-
-
+                        <li>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col namediv">
+                                        <i class="fas fa-caret-right bullet "></i> Name
+                                    </div>
+                                    <div class="col text-right coindiv">1,000
+                                        <i class="fas fa-coins coins"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
 
 
                     </ul>
                 </div>
+
+                <br>
+                <br>
+
+                <!-- Admin Login -->
+                <div class="card-container">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" id="userid" placeholder="User ID">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-lg" id="password" placeholder="Password">
+                        </div>
+                        <div class="buttoncontainer">
+                            <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+                <br>
+                <br>
+
+                <!-- Admin Forms -->
+
+
 
             </div>
             <div class="card-footer text-secondary text-center">
