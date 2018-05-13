@@ -15,16 +15,17 @@ body {
     background-repeat: repeat;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .card {
     margin-top: 1.5rem;
 }
 
-ul {
-    list-style-type: none;
-}
-
-.list-container {
-    width: 60%;
+.list-container ul li:nth-child(even) {
+    background-color: #ececec;
 }
 
 .bullet {
