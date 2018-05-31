@@ -1,6 +1,11 @@
 /* ==============================
-   Nav Colors
+   Nav
    ============================== */
+
+.chicken {
+    width: 30%;
+    margin-right: 1rem;
+}
 
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, .7);
@@ -38,6 +43,13 @@ ul {
     background-color: #ececec;
 }
 
+.body-title {
+    font-size: 17px;
+    color: grey;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
 .bullet {
     margin-right: 5px;
 }
@@ -48,4 +60,20 @@ ul {
 
 .footerbox {
     margin-top: 1.8rem;
+}
+
+/* ==============================
+   Admin-Panel
+   ============================== */
+
+.list-group-item:nth-child(even){
+    background-color: #ececec;
+}
+
+.fa-pencil {
+    padding: 0 5px;
+}
+
+.adduser {
+    margin: 3.5rem 0;
 }
