@@ -1,0 +1,23 @@
+{
+  "name": "kfchd-rewards",
+  "version": "1.0.0",
+  "description": "App to store reward points for KFC HD.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon start src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kjstanfield/Rewards.git"
+  },
+  "author": "Kyle Stanfield Kjstan@Gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kjstanfield/Rewards/issues"
+  },
+  "homepage": "https://github.com/kjstanfield/Rewards#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
