@@ -12,16 +12,16 @@ const EMPLOYEES = [
 
 ]
 
-/**
+/*************************
  * Create
- */
+ *************************/
 router.post('/emp', function (req, res, next) {
   res.end('Create a new emp')
 })
 
-/**
+/*************************
  * Read
- */
+ *************************/
 router.get('/emp/:empId', function (req, res, next) {
   const { empId } = req.params
   // same as 'const empId = req.params.empId'
@@ -34,24 +34,25 @@ router.get('/emp/:empId', function (req, res, next) {
 
   res.json(emp)
 })
-/**
+
+/*************************
  * Update
- */
+ *************************/
 router.put('/emp/:empId', function (req, res, next) {
   res.end(`Updating emp '${req.params.empId}'`)
 })
 
-/**
+/*************************
  * Delete
- */
+ *************************/
 
 router.delete('/emp/:empId', function (req, res, next) {
   res.end(`Deleting emp '${req.params.empId}'`)
 })
 
-/**
+/*************************
  * List
- */
+ *************************/
 router.get('/emp', function (req, res, next) {
   res.json(EMPLOYEES)
 })
