@@ -39,7 +39,11 @@ ul {
     margin-top: 1.5rem;
 }
 
-.card-container ul li:nth-child(even) {
+.coins {
+    margin-left: 5px;
+}
+
+.list-group-item:nth-child(even){
     background-color: #ececec;
 }
 
@@ -50,25 +54,14 @@ ul {
     margin-bottom: 1rem;
 }
 
-.bullet {
-    margin-right: 5px;
-}
-
-.coins {
-    margin-left: 5px;
-}
-
 .footerbox {
     margin-top: 1.8rem;
 }
 
+
 /* ==============================
    Admin-Panel
    ============================== */
-
-.list-group-item:nth-child(even){
-    background-color: #ececec;
-}
 
 .fa-pencil {
     padding: 0 5px;
