@@ -1,4 +1,4 @@
-// Attempt to add main list elements
+// Attempt to add main list elements on main page
 
 $.get('/api/emp', function (employees) {
   for (let emp of employees) {
@@ -11,6 +11,8 @@ $.get('/api/emp', function (employees) {
     </li>`)
   }
 })
+
+// Attempt to add main list elements on Admin Page
 
 $.get('/api/emp', function (employees) {
   for (let emp of employees) {
