@@ -9,7 +9,8 @@ const EMPLOYEES = [
   {id: 'CXT5027', name: 'Cody Thompson', coins: 4100},
   {id: 'ELE4032', name: 'Eric Eurton', coins: 2000},
   {id: 'JRW6115', name: 'Josh Woosley', coins: 6500},
-  {id: 'JAB4689', name: 'Josh Burke', coins: 3000}
+  {id: 'JAB4689', name: 'Josh Burke', coins: 3000},
+  {id: 'JLS7079', name: 'Jonathan Smith', coins: 100}
 
 ]
 
