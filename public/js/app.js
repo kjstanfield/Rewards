@@ -3,7 +3,6 @@ function getEmps () {
   return fetch('/api/emp')
     .then(response => response.json())
     .then(emps => {
-      console.log('Emps, I got them:', emps)
       return emps
     })
     .catch(error => console.error('GETEMPS:', error))

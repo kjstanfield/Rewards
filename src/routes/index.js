@@ -16,6 +16,9 @@ const EMPLOYEES = [
  * Create
  *************************/
 router.post('/emp', function (req, res, next) {
+  const data = req.body
+  console.log('POST DATA', data)
+
   res.end('Create a new emp')
 })
 
@@ -39,6 +42,9 @@ router.get('/emp/:empId', function (req, res, next) {
  * Update
  *************************/
 router.put('/emp/:empId', function (req, res, next) {
+  const data = req.body
+  console.log('PUT DATA', data)
+
   res.end(`Updating emp '${req.params.empId}'`)
 })
 
