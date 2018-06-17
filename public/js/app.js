@@ -1,29 +1,66 @@
-// Attempt to add main list elements on main page
+// Fetches data from the api
+function getEmps () {
+  return fetch('/api/emp')
+    .then(response => response.json())
+    .then(emps => {
+      console.log('Emps, I got them:', emps)
+      return emps
+    })
+    .catch(error => console.error('GETEMPS:', error))
+}
 
-$.get('/api/emp', function (employees) {
-  for (let emp of employees) {
-    $('#mainlist ul').append(`                   
-    <li class="list-group-item d-flex justify-content-between align-items-right">
-    <div>${emp.name}</div>
-    <span>
-      ${emp.coins} <i class="far fa-coins"></i> 
-    </span>
-    </li>`)
-  }
-})
+/**
+ * MAIN PAGE
+ */
 
-// Attempt to add main list elements on Admin Page
+// Render a list of emps for MAIN page
+function renderMainEmps (emps) {
+  const listItems = emps.map(emp => `                   
+  <li class="list-group-item d-flex justify-content-between align-items-right">
+  <div>${emp.name}</div>
+  <span>
+    ${emp.coins} <i class="far fa-coins"></i> 
+  </span>
+  </li>`)
+  const html = `<ul class="list-group">${listItems.join('')}</ul>`
 
-$.get('/api/emp', function (employees) {
-  for (let emp of employees) {
-    $('#adminlist ul').append(`                   
-    <li class="list-group-item d-flex justify-content-between align-items-right">
-    <div>${emp.name}</div>
-    <span class="controls">
-        <i class="far fa-coins"></i> ${emp.coins} 
-        <i class="far fa-pencil"></i>
-        <i class="fal fa-trash-alt"></i>
-    </span>
+  return html
+}
+
+// Fetch emps from the API and render to the page
+function refreshMainEmpList () {
+  getEmps()
+    .then(emps => {
+      const html = renderMainEmps(emps)
+      $('#list-container').html(html)
+    })
+}
+
+/**
+ * ADMIN PAGE
+ */
+
+// Render a list of emps for ADMIN page
+function renderAdminEmps (emps) {
+  const listItems = emps.map(emp => `
+  <li class="list-group-item d-flex justify-content-between align-items-right">
+  <div>${emp.name}</div>
+  <span class="controls">
+      <i class="far fa-coins"></i> ${emp.coins}
+      <i class="far fa-pencil"></i>
+      <i class="fal fa-trash-alt"></i>
+  </span>
 </li>`)
-  }
-})
+  const html = `<ul class="list-group">${listItems.join('')}</ul>`
+
+  return html
+}
+
+// Fetch emps from the API and render to the page
+function refreshAdminEmpList () {
+  getEmps()
+    .then(emps => {
+      const html = renderAdminEmps(emps)
+      $('#list-container').html(html)
+    })
+}
