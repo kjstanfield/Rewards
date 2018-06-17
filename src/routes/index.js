@@ -1,5 +1,6 @@
 // src/routes/index.js
 const router = require('express').Router()
+const mongoose = require('mongoose')
 module.exports = router
 
 const EMPLOYEES = [
@@ -60,5 +61,12 @@ router.delete('/emp/:empId', function (req, res, next) {
  * List
  *************************/
 router.get('/emp', function (req, res, next) {
-  res.json(EMPLOYEES)
+  mongoose.model('Emp').find({}, function (err, emps) {
+    if (err) {
+      console.log(err)
+      return res.status(500).json(err)
+    }
+
+    res.json(emps)
+  })
 })
