@@ -15,7 +15,10 @@
    Form Input Color Override
    ============================== */
 
-textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
     border: none;
     box-shadow: 0 1px 1px rgba(147, 8, 12, 0.075) inset, 0 0 0 4px rgba(147, 8, 12, 0.4);
     outline: 0 none;
@@ -43,7 +46,7 @@ ul {
     margin-left: 5px;
 }
 
-.list-group-item:nth-child(even){
+.list-group-item:nth-child(even) {
     background-color: #ececec;
 }
 
@@ -66,14 +69,24 @@ ul {
     float: right;
 }
 
-
 /* ==============================
    Admin-Panel
    ============================== */
 
-.fa-pencil {
-    padding: 0 5px;
-    margin-left: 1.4rem;
+.editCoins {
+    margin-left: .3rem;
+    width: 6rem;
+}
+
+.delBtn {
+    margin-left: .3rem;
+    width: 30px;
+    cursor: pointer;
+}
+
+.saveCoins {
+    margin-top: 1rem;
+    font-weight: bold;
 }
 
 .adduser {

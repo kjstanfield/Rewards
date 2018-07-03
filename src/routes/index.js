@@ -3,25 +3,25 @@ const router = require('express').Router()
 const mongoose = require('mongoose')
 module.exports = router
 
-const EMPLOYEES = [
-  {id: 'KJS6577', name: 'Kyle Stanfield', coins: 8500},
-  {id: 'DWD7983', name: 'Dalton Decker', coins: 4000},
-  {id: 'CXT5027', name: 'Cody Thompson', coins: 4100},
-  {id: 'ELE4032', name: 'Eric Eurton', coins: 2000},
-  {id: 'JRW6115', name: 'Josh Woosley', coins: 6500},
-  {id: 'JAB4689', name: 'Josh Burke', coins: 3000},
-  {id: 'JLS7079', name: 'Jonathan Smith', coins: 100}
-
-]
-
 /*************************
  * Create
  *************************/
 router.post('/emp', function (req, res, next) {
-  const data = req.body
-  console.log('POST DATA', data)
+  const Emp = mongoose.model('Emp')
+  const empData = {
+    name: req.body.name,
+    id: req.body.id,
+    coins: req.body.coins
+  }
 
-  res.end('Create a new emp')
+  Emp.create(empData, function (err, newEmp) {
+    if (err) {
+      console.error(err)
+      return res.status(500).json(err)
+    }
+
+    res.json(newEmp)
+  })
 })
 
 /*************************

@@ -57,10 +57,13 @@
                 <div id="list-container">
                     <!-- Render List Here -->
                 </div>
+                <div class="buttoncontainer">
+                    <button type="put" onclick="submitCoins()" class="btn btn-danger btn-block saveCoins">SAVE</button>
+                </div>
 
                 <!-- Add User -->
                 <div class="adduser">
-                    <!-- Username -->
+                    <!-- User Name -->
                     <div class="form-group">
                         <label class="sr-only" for="inlineFormInputGroup">UserName</label>
                         <div class="input-group mb-1">
@@ -84,9 +87,9 @@
                             <input type="text" class="form-control form-control" id="username" placeholder="User ID">
                         </div>
                     </div>
-                    <!-- Submit Button -->
+                    <!-- Add User Submit -->
                     <div class="buttoncontainer">
-                        <button type="submit" class="btn btn-danger btn-block">Add User</button>
+                        <button type="button" onclick="addUser()" class="btn btn-danger btn-block">Add User</button>
                     </div>
                 </div>
 
