@@ -14,28 +14,30 @@ $('#topArrow').on('click', function () {
 })
 
 /**
- * MAIN PAGE
+ * ADMIN PAGE
  */
 
-// Render a list of emps for MAIN page
-function renderMainEmps (emps) {
-  const listItems = emps.map(emp => `                   
+// Render a list of emps for ADMIN page
+function renderAdminEmps (emps) {
+  const listItems = emps.map(emp => `
   <li class="list-group-item d-flex justify-content-between align-items-right">
   <div>${emp.name}</div>
-  <span>
-    ${emp.coins} <i class="far fa-coins"></i> 
+  <span class="controls">
+      <i class="far fa-coins"></i> ${emp.coins}
+      <i class="far fa-pencil"></i>
+      <i class="fal fa-trash-alt"></i>
   </span>
-  </li>`)
+</li>`)
   const html = `<ul class="list-group">${listItems.join('')}</ul>`
 
   return html
 }
 
 // Fetch emps from the API and render to the page
-function refreshMainEmpList () {
+function refreshAdminEmpList () {
   getEmps()
     .then(emps => {
-      const html = renderMainEmps(emps)
+      const html = renderAdminEmps(emps)
       $('#list-container').html(html)
     })
 }
