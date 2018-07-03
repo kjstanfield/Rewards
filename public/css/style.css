@@ -79,8 +79,12 @@ ul {
 }
 
 .delBtn {
-    margin-left: .3rem;
+    margin-left: .2rem;
     width: 30px;
+    cursor: pointer;
+}
+
+.editBtn {
     cursor: pointer;
 }
 

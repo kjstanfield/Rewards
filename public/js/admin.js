@@ -20,13 +20,16 @@ $('#topArrow').on('click', function () {
  */
 
 // Render a list of emps for ADMIN page
-function renderAdminEmps (emps) {
+function renderAdminEmps(emps) {
   const listItems = emps.map(emp => `
   <li class="list-group-item d-flex justify-content-between align-items-right">
   <div>${emp.name}</div>
   <span class="controls">
       <i class="far fa-coins"></i>
       <input type="number" id="" class="editCoins" size="5" value="${emp.coins}">
+      <button name="editUser" id="" onclick="editEmp()" type="button" class="editBtn">
+        <i class="far fa-edit"></i>
+      </button>
       <button name="deleteUser" id="" onclick="delUser()" type="button" class="delBtn">
         <i class="fal fa-trash-alt"></i>
       </button>
