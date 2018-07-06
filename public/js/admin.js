@@ -19,18 +19,20 @@ $('#topArrow').on('click', function () {
  * ADMIN PAGE
  */
 
+//
 // Render a list of emps for ADMIN page
-function renderAdminEmps(emps) {
+//
+function renderAdminEmps (emps) {
   const listItems = emps.map(emp => `
   <li class="list-group-item d-flex justify-content-between align-items-right">
   <div>${emp.name}</div>
   <span class="controls">
       <i class="far fa-coins"></i>
-      <input type="number" id="" class="editCoins" size="5" value="${emp.coins}">
-      <button name="editUser" id="" onclick="editEmp()" type="button" class="editBtn">
+      <input type="number" data-emp-id="${emp._id}" class="editCoins" size="5" value="${emp.coins}">
+      <button name="editUser" data-emp-id="${emp._id}" onclick="editEmp(this)" type="button" class="editBtn">
         <i class="far fa-edit"></i>
       </button>
-      <button name="deleteUser" id="" onclick="delUser()" type="button" class="delBtn">
+      <button name="deleteUser" data-emp-id="${emp._id}" data-emp-name="${emp.name}" onclick="handleDelUser(this)" type="button" class="delBtn">
         <i class="fal fa-trash-alt"></i>
       </button>
   </span>
@@ -44,7 +46,9 @@ function renderAdminEmps(emps) {
   return html
 }
 
+//
 // Fetch emps from the API and render to the page
+//
 function refreshAdminEmpList () {
   getEmps()
     .then(emps => {
@@ -58,9 +62,12 @@ function submitCoins () {
   console.log('Save Clicked')
 }
 
-// Add User
-function addUser () {
-  console.log('Added User')
+//
+// Add New Employee
+//
+function addEmployee () {
+  $('#fullname').val('')
+  $('#username').val('')
 
   const empData = {
     name: $('#fullname').val(),
@@ -71,23 +78,47 @@ function addUser () {
   fetch('/api/emp', {
     method: 'post',
     body: JSON.stringify(empData),
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    headers: { 'Content-Type': 'application/json' }
   })
     .then(response => response.json())
     .then(emp => {
-      console.log('we have posted the data', emp)
       refreshAdminEmpList()
     })
     .catch(err => {
       console.error('A terrible thing has happened', err)
     })
 
-  console.log('New user data ->', empData)
+  $('#fullname').val('')
+  $('#username').val('')
 }
 
+//
+// Deletion Handler - Displays confirmation Modal
+//
+function handleDelUser (emp) {
+  const empId = emp.getAttribute('data-emp-id')
+  const empName = emp.getAttribute('data-emp-name')
+
+  $('.modal-body').html(`Are you sure you want to delete <span class="bold">${empName}</span>?`)
+  $('#confirmDelete').attr('onclick', `delUser("${empId}")`)
+  $('#warningModal').modal('show')
+}
+
+//
 // Delete User
-function delUser () {
-  console.log('Deleted User')
+//
+function delUser (empId) {
+  $('#warningModal').modal('hide')
+  const url = '/api/emp/' + empId
+
+  fetch(url, {
+    method: 'delete',
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(response => {
+      refreshAdminEmpList()
+    })
+    .catch(err => {
+      console.error('Delete Failed', err)
+    })
 }

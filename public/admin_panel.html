@@ -53,12 +53,8 @@
                 <div class="body-title text-center">
                     ADMIN
                 </div>
-                <!--TODO: Look into security options for hiding the global command-->
                 <div id="list-container">
                     <!-- Render List Here -->
-                </div>
-                <div class="buttoncontainer">
-                    <button type="put" onclick="submitCoins()" class="btn btn-danger btn-block saveCoins">SAVE</button>
                 </div>
 
                 <!-- Add User -->
@@ -89,7 +85,7 @@
                     </div>
                     <!-- Add User Submit -->
                     <div class="buttoncontainer">
-                        <button type="button" onclick="addUser()" class="btn btn-danger btn-block">Add User</button>
+                        <button type="button" onclick="addEmployee()" class="btn btn-danger btn-block">Add User</button>
                     </div>
                 </div>
 
@@ -103,19 +99,39 @@
         </div>
     </div>
 
-</body>
+    <!-- Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warningModalTitle">Warning!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="confirmDelete"class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<!-- jQuery,  Popper.js,  Bootstrap JS, Fontawesome -->
-<script src="js/jquery-3.3.1.min.js "></script>
-<script src="js/popper.min.js "></script>
-<script src="js/bootstrap.min.js "></script>
-<script src="js/admin.js"></script>
-<script>
-    $(document).ready(function () {
-        refreshAdminEmpList();
-    });
-</script>
+
+    <!-- jQuery,  Popper.js,  Bootstrap JS, Fontawesome -->
+    <script src="js/jquery-3.3.1.min.js "></script>
+    <script src="js/popper.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+    <script src="js/admin.js"></script>
+    <script>
+        $(document).ready(function () {
+            refreshAdminEmpList();
+        });
+    </script>
 </body>
 
 </html>

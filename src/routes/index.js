@@ -28,7 +28,9 @@ router.post('/emp', function (req, res, next) {
  * Read
  *************************/
 router.get('/emp/:empId', function (req, res, next) {
-  const { empId } = req.params
+  const {
+    empId
+  } = req.params
   // same as 'const empId = req.params.empId'
 
   const fixedEmpId = empId.toUpperCase()
@@ -55,7 +57,22 @@ router.put('/emp/:empId', function (req, res, next) {
  *************************/
 
 router.delete('/emp/:empId', function (req, res, next) {
-  res.end(`Deleting emp '${req.params.empId}'`)
+  const Emp = mongoose.model('Emp')
+  const empId = req.params.empId
+
+  Emp.findByIdAndRemove(empId, (err, emp) => {
+    if (err) {
+      console.log(err)
+      return res.status(500).json(err)
+    }
+    if (!emp) {
+      return res.status(404).json({
+        message: 'Emp not found'
+      })
+    }
+    const response = { message: 'Employee successfully deleted' }
+    return res.status(200).send(response)
+  })
 })
 
 /*************************
