@@ -35,6 +35,21 @@ function renderMainEmps (emps) {
 function refreshMainEmpList () {
   getEmps()
     .then(emps => {
+      // Sorts page to show employees with the most coins at top.
+      function compare(a, b) {
+        const coinsA = a.coins
+        const coinsB = b.coins
+        let comparison = 0
+
+        if (coinsA > coinsB) {
+          comparison = -1
+        } else if (coinsA < coinsB) {
+          comparison = 1
+        }
+        return comparison
+      }
+      emps.sort(compare)
+      const sortedEmps = emps.sort(compare)
       const html = renderMainEmps(emps)
       $('#list-container').html(html)
     })

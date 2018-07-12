@@ -9,15 +9,12 @@ function getEmps () {
 }
 
 // Scroll to Top
+// When Arrow at bottom of page is clicked
 $('#topArrow').on('click', function () {
   $('html, body').animate({
     scrollTop: 0
   }, 600)
 })
-
-/**
- * ADMIN PAGE
- */
 
 //
 // Render a list of emps for ADMIN page
@@ -29,7 +26,7 @@ function renderAdminEmps (emps) {
   <span class="controls">
       <i class="far fa-coins"></i>
       <input type="number" data-emp-id="${emp._id}" class="editCoins" size="5" value="${emp.coins}">
-      <button name="editUser" data-emp-id="${emp._id}" onclick="editEmp(this)" type="button" class="editBtn">
+      <button name="editUser" data-emp-id="${emp._id}" onclick="handleEditEmp(this)" type="button" class="editBtn">
         <i class="far fa-edit"></i>
       </button>
       <button name="deleteUser" data-emp-id="${emp._id}" data-emp-name="${emp.name}" onclick="handleDelUser(this)" type="button" class="delBtn">
@@ -52,14 +49,24 @@ function renderAdminEmps (emps) {
 function refreshAdminEmpList () {
   getEmps()
     .then(emps => {
-      const html = renderAdminEmps(emps)
+      // Sorts Names into alphabetical
+      function compare(a, b) {
+        const nameA = a.name.toUpperCase()
+        const nameB = b.name.toUpperCase()
+        let comparison = 0
+
+        if (nameA > nameB) {
+          comparison = 1
+        } else if (nameA < nameB) {
+          comparison = -1
+        }
+        return comparison
+      }
+      emps.sort(compare)
+      const sortedEmps = emps.sort(compare)
+      const html = renderAdminEmps(sortedEmps)
       $('#list-container').html(html)
     })
-}
-
-// Submit Coin changes
-function submitCoins () {
-  console.log('Save Clicked')
 }
 
 //
@@ -76,7 +83,7 @@ function addEmployee () {
   }
 
   fetch('/api/emp', {
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(empData),
     headers: { 'Content-Type': 'application/json' }
   })
@@ -100,19 +107,19 @@ function handleDelUser (emp) {
   const empName = emp.getAttribute('data-emp-name')
 
   $('.modal-body').html(`Are you sure you want to delete <span class="bold">${empName}</span>?`)
-  $('#confirmDelete').attr('onclick', `delUser("${empId}")`)
+  $('#confirmDelete').attr('onclick', `delEmp("${empId}")`)
   $('#warningModal').modal('show')
 }
 
 //
-// Delete User
+// Delete Employee
 //
-function delUser (empId) {
+function delEmp (empId) {
   $('#warningModal').modal('hide')
   const url = '/api/emp/' + empId
 
   fetch(url, {
-    method: 'delete',
+    method: 'DELETE',
     headers: { 'Content-Type': 'application/json' }
   })
     .then(response => {
@@ -120,5 +127,42 @@ function delUser (empId) {
     })
     .catch(err => {
       console.error('Delete Failed', err)
+    })
+}
+
+//
+// Edit Handler
+//
+function handleEditEmp(employee) {
+  const empId = employee.getAttribute('data-emp-id')
+  const newCoins = $(`input[data-emp-id=${empId}]`).val()
+
+  if (empId) {
+    editEmp(empId, newCoins)
+  }
+
+}
+
+//
+// Edit Employee
+//
+function editEmp(empId, newCoins) {
+  const empData = {
+    coins: newCoins
+  }
+  fetch(`/api/emp/${empId}`, {
+    method: 'PUT',
+    body: JSON.stringify(empData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(emp => {
+      console.log("Updated", emp)
+      refreshAdminEmpList()
+    })
+    .catch(err => {
+      console.error('Something went wrong', err)
     })
 }

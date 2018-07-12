@@ -45,12 +45,31 @@ router.get('/emp/:empId', function (req, res, next) {
 /*************************
  * Update
  *************************/
-router.put('/emp/:empId', function (req, res, next) {
-  const data = req.body
-  console.log('PUT DATA', data)
-
-  res.end(`Updating emp '${req.params.empId}'`)
-})
+router.put('/emp/:empId', function(req, res, next) {
+  const Emp = mongoose.model('Emp');
+  const empId = req.params.empId;
+  
+  Emp.findById(empId, function(err, emp) {
+    if (err) {
+      console.error(err);
+      return res.status(500).json(err);
+    }
+    if (!emp) {
+      return res.status(404).json({message: "Emp not found"});
+    }
+  
+    emp.coins = req.body.coins;
+  
+    emp.save(function(err, savedEmp) {
+      if (err) {
+        console.error(err);
+        return res.status(500).json(err);
+      }
+      res.json(savedEmp);
+    })
+  
+  })
+  });
 
 /*************************
  * Delete
