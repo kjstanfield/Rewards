@@ -13,10 +13,6 @@ $('#topArrow').on('click', function () {
   $('html, body').animate({ scrollTop: 0 }, 600)
 })
 
-/**
- * MAIN PAGE
- */
-
 // Render a list of emps for MAIN page
 function renderMainEmps (emps) {
   const listItems = emps.map(emp => `                   
