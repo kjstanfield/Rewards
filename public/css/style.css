@@ -102,3 +102,16 @@ ul {
     margin: 4rem auto 1rem auto;
     width: 70%;
 }
+
+/* ==============================
+   Login Page
+   ============================== */
+
+.login {
+    text-align: center
+}
+
+#googleBtn {
+    width: 50%;
+    margin: 1rem 0;
+}
