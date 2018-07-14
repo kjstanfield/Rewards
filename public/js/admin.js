@@ -26,10 +26,10 @@ function renderAdminEmps (emps) {
   <span class="controls">
       <i class="far fa-coins"></i>
       <input type="number" data-emp-id="${emp._id}" class="editCoins" size="5" value="${emp.coins}">
-      <button name="editUser" data-emp-id="${emp._id}" onclick="handleEditEmp(this)" type="button" class="editBtn">
+      <button name="editUser" type="button" class="editBtn" data-emp-id="${emp._id}" onclick="handleEditEmp(this)" data-container="body" data-toggle="popover" data-placement="right"  data-offset="" data-content="Saved!">
         <i class="far fa-edit"></i>
       </button>
-      <button name="deleteUser" data-emp-id="${emp._id}" data-emp-name="${emp.name}" onclick="handleDelUser(this)" type="button" class="delBtn">
+      <button name="deleteUser" type="button" class="delBtn" data-emp-id="${emp._id}" data-emp-name="${emp.name}" onclick="handleDelUser(this)">
         <i class="fal fa-trash-alt"></i>
       </button>
   </span>
@@ -50,7 +50,7 @@ function refreshAdminEmpList () {
   getEmps()
     .then(emps => {
       // Sorts Names into alphabetical
-      function compare(a, b) {
+      function compare (a, b) {
         const nameA = a.name.toUpperCase()
         const nameB = b.name.toUpperCase()
         let comparison = 0
@@ -66,6 +66,24 @@ function refreshAdminEmpList () {
       const sortedEmps = emps.sort(compare)
       const html = renderAdminEmps(sortedEmps)
       $('#list-container').html(html)
+
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+      $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+          placement: 'bottom',
+          delay: {
+            show: 200,
+            hide: 100
+          }
+        })
+        $('[data-toggle="popover"]').click(function () {
+          setTimeout(function () {
+            $('.popover').fadeOut('slow')
+          }, 2000)
+        })
+      })
     })
 }
 
@@ -73,9 +91,6 @@ function refreshAdminEmpList () {
 // Add New Employee
 //
 function addEmployee () {
-  $('#fullname').val('')
-  $('#username').val('')
-
   const empData = {
     name: $('#fullname').val(),
     id: $('#username').val(),
@@ -85,7 +100,9 @@ function addEmployee () {
   fetch('/api/emp', {
     method: 'POST',
     body: JSON.stringify(empData),
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
     .then(response => response.json())
     .then(emp => {
@@ -120,7 +137,9 @@ function delEmp (empId) {
 
   fetch(url, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
     .then(response => {
       refreshAdminEmpList()
@@ -133,20 +152,19 @@ function delEmp (empId) {
 //
 // Edit Handler
 //
-function handleEditEmp(employee) {
+function handleEditEmp (employee) {
   const empId = employee.getAttribute('data-emp-id')
   const newCoins = $(`input[data-emp-id=${empId}]`).val()
 
   if (empId) {
     editEmp(empId, newCoins)
   }
-
 }
 
 //
 // Edit Employee
 //
-function editEmp(empId, newCoins) {
+function editEmp (empId, newCoins) {
   const empData = {
     coins: newCoins
   }
@@ -159,7 +177,7 @@ function editEmp(empId, newCoins) {
   })
     .then(response => response.json())
     .then(emp => {
-      console.log("Updated", emp)
+      console.log('Successfully updated', emp.name)
       refreshAdminEmpList()
     })
     .catch(err => {
