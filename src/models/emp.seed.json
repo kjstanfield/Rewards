@@ -50,11 +50,6 @@
     "coins": 100
   },
   {
-    "id": "CXH8569",
-    "name": "Cody Higdon",
-    "coins": 100
-  },
-  {
     "id": "CXT5027",
     "name": "Cody Thompson",
     "coins": 100
@@ -62,11 +57,6 @@
   {
     "id": "CXS3057",
     "name": "Connor Stonecash",
-    "coins": 100
-  },
-  {
-    "id": "DWD7983",
-    "name": "Dalton Decker",
     "coins": 100
   },
   {
@@ -220,11 +210,6 @@
     "coins": 100
   },
   {
-    "id": "JLS7079",
-    "name": "Jonathan Smith",
-    "coins": 100
-  },
-  {
     "id": "JAB4689",
     "name": "Joshua Burke",
     "coins": 100
@@ -249,9 +234,4 @@
     "name": "Joshua Woosley",
     "coins": 100
   },
-  {
-    "id": "RML9303",
-    "name": "Randy Lovell",
-    "coins": 100
-  }
  ]

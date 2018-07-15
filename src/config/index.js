@@ -9,5 +9,11 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     dbName: process.env.DB_NAME
+  },
+  authdb: {
+    username: process.env.AUTH_USERNAME,
+    password: process.env.AUTH_PASSWORD,
+    host: process.env.AUTH_HOST,
+    dbname: process.env.AUTH_NAME
   }
 }
