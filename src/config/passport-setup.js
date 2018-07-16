@@ -33,7 +33,7 @@ passport.use(
         } else {
           // doesn't exist, creating admin in DB
           new Admin({
-            username: profile.displayname,
+            username: profile.displayName,
             googleID: profile.id
           }).save().then((newAdmin) => {
             console.log('New admin created:' + newAdmin)
