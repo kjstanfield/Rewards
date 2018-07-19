@@ -8,7 +8,7 @@ function getEmps () {
     .catch(error => console.error('GETEMPS:', error))
 }
 
-// Scroll to Top
+// Arrow at bottom of screen scrolls to top
 $('#topArrow').on('click', function () {
   $('html, body').animate({ scrollTop: 0 }, 600)
 })
